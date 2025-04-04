@@ -7,6 +7,10 @@ export function Avatar({
   };
 }) {
   return (
-    <img src={person.imageUrl} alt={person.name} className="avatar size-10" />
+    <div>
+      <img src={person.imageUrl} alt={person.name} className="avatar size-10" />
+      {person.name && <span>{person.name}</span>}
+      {!person.name && <span>Anonymous</span>}
+    </div>
   );
 }
