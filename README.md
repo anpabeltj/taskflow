@@ -13,7 +13,7 @@ TaskFlow focuses on simplicity and efficiency. The app uses local storage for da
 | Feature              | Description                                                    |
 | -------------------- | -------------------------------------------------------------- |
 | 📝 Task Management   | Add, edit, and delete tasks quickly and easily.                |
-| 📱 Responsive Design | Seamless UI on both mobile and desktop devices.                |
+| 📱 Responsive Design | Seamless UI on both desktop devices.                           |
 | 💾 Data Persistence  | Stores tasks in local storage for continuity between sessions. |
 | 🔄 Drag & Drop       | Rearrange tasks effortlessly by dragging them to reprioritize. |
 | ⏰ Notifications     | Set reminders for your tasks so nothing gets overlooked.       |
