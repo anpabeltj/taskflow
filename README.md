@@ -17,7 +17,3 @@ TaskFlow focuses on simplicity and efficiency. The app uses local storage for da
 | 💾 Data Persistence  | Stores tasks in local storage for continuity between sessions. |
 | 🔄 Drag & Drop       | Rearrange tasks effortlessly by dragging them to reprioritize. |
 | ⏰ Notifications     | Set reminders for your tasks so nothing gets overlooked.       |
-
-## Example 💻
-
-Below is a basic HTML/JavaScript snippet illustrating how TaskFlow might work:
