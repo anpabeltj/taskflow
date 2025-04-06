@@ -1,10 +1,46 @@
 import { Avatar } from "./components/avatar";
 import { Button } from "./components/button";
+import { Tasks } from "./components/tasks";
 
 export function App() {
+  const tasks = [
+    {
+      id: "1",
+      title: "Go to gym",
+      completed: false,
+      datetime: new Date("2025-03-04 07:00"),
+    },
+    {
+      id: "2",
+      title: "Read a book",
+      completed: true,
+      datetime: new Date("2025-03-04 10:00"),
+    },
+    {
+      id: "3",
+      title: "Lunch",
+      completed: true,
+      datetime: new Date("2025-03-04 12:00"),
+    },
+    {
+      id: "4",
+      title: "Go to Office",
+      completed: false,
+      datetime: new Date("2025-03-04 14:00"),
+    },
+    {
+      id: "5",
+      title: "Meeting with client",
+      completed: false,
+      datetime: new Date("2025-03-04 15:00"),
+    },
+  ];
   return (
     <>
       <h1> TaskFlow</h1>
+
+      <Tasks tasks={tasks} />
+
       <Button>Example</Button>
       <Button>Contoh</Button>
 
