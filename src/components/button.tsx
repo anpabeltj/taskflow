@@ -1,3 +1,3 @@
-export function Button() {
-  return <button>Contoh</button>;
+export function Button({ children }: { children: React.ReactNode }) {
+  return <button>{children}</button>;
 }
