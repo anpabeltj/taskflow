@@ -1,5 +1,6 @@
-import { Avatar } from "./components/avatar";
-import { Tasks } from "./components/tasks";
+import { Avatar } from "@/components/avatar";
+import { Tasks } from "@/components/tasks";
+import { Button } from "@/components/ui/button";
 
 export function App() {
   const tasks = [
@@ -37,7 +38,16 @@ export function App() {
 
   return (
     <>
-      <h1>TaskFlow</h1>
+      <h1 className="text-3xl font-bold text-blue-800">TaskFlow</h1>
+      <h2 className="text-2xl font-bold">Task management app</h2>
+
+      <div className="flex gap-2">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="destructive" size="sm">
+          Delete
+        </Button>
+      </div>
 
       <Avatar
         person={{

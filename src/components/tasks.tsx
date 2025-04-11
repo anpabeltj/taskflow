@@ -1,4 +1,4 @@
-import type { Tasks } from "../modules/task/type";
+import type { Tasks } from "@/modules/task/type";
 
 export function Tasks({ tasks }: { tasks: Tasks }) {
   return (
