@@ -1,12 +1,14 @@
-export function Tasks({ tasks }: { tasks: { id: string; title: string; completed: boolean; datetime?: Date }[] }) {
+import type { Tasks } from "@/modules/task/type";
+
+export function Tasks({ tasks }: { tasks: Tasks }) {
   return (
     <ul>
       {tasks.map((task) => {
         return (
-          <li>
-            {task.id}
+          <li key={task.id}>
             <section>
               <h2>{task.title}</h2>
+
               {!task.datetime && <p>No date set</p>}
               {task.datetime && (
                 <p>
@@ -14,7 +16,9 @@ export function Tasks({ tasks }: { tasks: { id: string; title: string; completed
                   {task.datetime.toTimeString()}
                 </p>
               )}
-              {task.completed ? <p>Completed</p> : <p>Not Completed</p>}
+
+              {!task.completed && <p>Not Completed</p>}
+              {task.completed && <p>Completed</p>}
             </section>
           </li>
         );
