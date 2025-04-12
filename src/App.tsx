@@ -70,12 +70,16 @@ export function App() {
                 {new Date(task.datetime).toLocaleString()}
               </p>
             )}
-            <span className="mt-2 inline-block rounded px-2 py-1 text-xs font-medium">
+            <span className="mt-2 inline-block text-xs font-medium">
               {!task.completed && (
-                <p className="bg-red-100 text-red-800">Pending</p>
+                <p className="rounded border bg-red-100 p-1 text-red-800">
+                  Pending
+                </p>
               )}
               {task.completed && (
-                <p className="bg-green-100 text-green-800">Completed</p>
+                <p className="rounded border bg-green-100 p-1 text-green-800">
+                  Completed
+                </p>
               )}
             </span>
           </div>
