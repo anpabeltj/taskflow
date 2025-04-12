@@ -1,8 +1,16 @@
 import type { Tasks } from "@/modules/task/type";
 import { Badge } from "@/components/ui/badge";
 import { formatDateFriendly } from "@/lib/datetime";
+import { Button } from "./ui/button";
+import { DeleteIcon } from "lucide-react";
 
-export function Tasks({ tasks }: { tasks: Tasks }) {
+export function Tasks({
+  tasks,
+  removeTask,
+}: {
+  tasks: Tasks;
+  removeTask: (id: string) => void;
+}) {
   return (
     <ul className="grid grid-cols-1 gap-6">
       {tasks.map((task, index) => (
@@ -10,7 +18,17 @@ export function Tasks({ tasks }: { tasks: Tasks }) {
           key={index}
           className="rounded border border-gray-200 bg-white p-4 shadow"
         >
-          <h3 className="text-lg font-semibold">{task.title}</h3>
+          <section className="flex items-end justify-between">
+            <h3 className="text-lg font-semibold">{task.title}</h3>
+
+            <Button
+              onClick={() => removeTask(task.id)}
+              size="icon-xs"
+              variant="destructive"
+            >
+              <DeleteIcon />
+            </Button>
+          </section>
 
           <section className="flex items-end justify-between">
             <div>

@@ -1,8 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tasks } from "@/components/tasks";
+import { useState } from "react";
+import { Button } from "./components/ui/button";
 
 export function App() {
-  const tasks = [
+  const [tasks, setTasks] = useState([
     {
       id: "a",
       title: "Go to gym",
@@ -33,7 +35,24 @@ export function App() {
       completed: false,
       datetime: new Date("2025-03-04 15:00"),
     },
-  ];
+  ]);
+
+  function addTask() {
+    const newTask = {
+      id: String(tasks.length + 1),
+      title: "New Todo",
+      completed: false,
+      datetime: new Date(),
+    };
+
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+  }
+
+  function removeTask(id: string) {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -51,8 +70,14 @@ export function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl">
-        <Tasks tasks={tasks} />
+      <main className="mx-auto max-w-2xl space-y-10">
+        <div>
+          <Button size="sm" onClick={addTask}>
+            Add Task
+          </Button>
+        </div>
+
+        <Tasks tasks={tasks} removeTask={removeTask} />
       </main>
     </div>
   );
