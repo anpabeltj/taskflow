@@ -18,6 +18,18 @@ TaskFlow focuses on simplicity and efficiency. The app uses local storage for da
 | 🔄 Drag & Drop       | Rearrange tasks effortlessly by dragging them to reprioritize. |
 | ⏰ Notifications     | Set reminders for your tasks so nothing gets overlooked.       |
 
+## Development
+
+```sh
+bun install
+```
+
+```sh
+bun dev
+```
+
+Open `http://localhost:5173` in your browser to view the app.
+
 ## Example 💻
 
 Below is a basic HTML/JavaScript snippet illustrating how TaskFlow might work:
