@@ -1,4 +1,6 @@
-export function Tasks({ tasks }: { tasks: { id: string; title: string; completed: boolean; datetime?: Date }[] }) {
+import type { Tasks } from "@/modules/task/type";
+
+export function Tasks({ tasks }: { tasks: Tasks }) {
   return (
     <ul>
       {tasks.map((task) => {
