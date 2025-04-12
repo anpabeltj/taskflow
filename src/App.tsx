@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import { Tasks } from "@/components/tasks";
 
 export function App() {
   const tasks = [
@@ -52,36 +52,7 @@ export function App() {
       </header>
 
       <main className="mx-auto max-w-2xl">
-        <ul className="grid grid-cols-1 gap-6">
-          {tasks.map((task, index) => (
-            <li
-              key={index}
-              className="rounded border border-gray-200 bg-white p-4 shadow"
-            >
-              <h3 className="text-lg font-semibold">{task.title}</h3>
-
-              <section className="flex items-end justify-between">
-                <div>
-                  {task.datetime && (
-                    <time
-                      dateTime={task.datetime.toLocaleString()}
-                      className="text-sm text-gray-600"
-                    >
-                      {task.datetime.toLocaleString()}
-                    </time>
-                  )}
-                </div>
-
-                <div className="mt-2 inline-block text-xs font-medium">
-                  {!task.completed && <Badge variant="pending">Pending</Badge>}
-                  {task.completed && (
-                    <Badge variant="completed">Completed</Badge>
-                  )}
-                </div>
-              </section>
-            </li>
-          ))}
-        </ul>
+        <Tasks tasks={tasks} />
       </main>
     </div>
   );
