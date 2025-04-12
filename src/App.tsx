@@ -1,5 +1,5 @@
-import { Avatar } from "@/components/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 export function App() {
   const tasks = [
@@ -37,53 +37,51 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-bold text-blue-800">TaskFlow</h1>
-        <h2 className="mt-2 text-2xl font-semibold">Task management app</h2>
+      <header className="mb-8 flex justify-between border-b pb-4">
+        <div>
+          <h1 className="text-3xl font-bold text-blue-800">TaskFlow</h1>
+          <h2 className="mt-2 text-2xl font-semibold">Task management app</h2>
+        </div>
+
+        <div>
+          <Avatar className="size-14">
+            <AvatarImage src="https://github.com/anpabeltj.png" />
+            <AvatarFallback>AT</AvatarFallback>
+          </Avatar>
+        </div>
       </header>
 
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex gap-4">
-          <Button>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="destructive" size="sm">
-            Delete
-          </Button>
-        </div>
-        <Avatar
-          person={{
-            name: "Anpabelt",
-            imageUrl: "https://github.com/anpabeltj.png",
-          }}
-        />
-      </div>
+      <main className="mx-auto max-w-2xl">
+        <ul className="grid grid-cols-1 gap-6">
+          {tasks.map((task, index) => (
+            <li
+              key={index}
+              className="rounded border border-gray-200 bg-white p-4 shadow"
+            >
+              <h3 className="text-lg font-semibold">{task.title}</h3>
 
-      <main className="grid grid-cols-1 gap-6">
-        {tasks.map((task, index) => (
-          <div
-            key={index}
-            className="rounded border border-gray-200 bg-white p-4 shadow"
-          >
-            <h3 className="text-lg font-semibold">{task.title}</h3>
-            {task.datetime && (
-              <p className="text-sm text-gray-600">
-                {new Date(task.datetime).toLocaleString()}
-              </p>
-            )}
-            <span className="mt-2 inline-block text-xs font-medium">
-              {!task.completed && (
-                <p className="rounded border bg-red-100 p-1 text-red-800">
-                  Pending
-                </p>
-              )}
-              {task.completed && (
-                <p className="rounded border bg-green-100 p-1 text-green-800">
-                  Completed
-                </p>
-              )}
-            </span>
-          </div>
-        ))}
+              <section className="flex items-end justify-between">
+                <div>
+                  {task.datetime && (
+                    <time
+                      dateTime={task.datetime.toLocaleString()}
+                      className="text-sm text-gray-600"
+                    >
+                      {task.datetime.toLocaleString()}
+                    </time>
+                  )}
+                </div>
+
+                <div className="mt-2 inline-block text-xs font-medium">
+                  {!task.completed && <Badge variant="pending">Pending</Badge>}
+                  {task.completed && (
+                    <Badge variant="completed">Completed</Badge>
+                  )}
+                </div>
+              </section>
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );
