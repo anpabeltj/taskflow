@@ -2,7 +2,8 @@ import type { Tasks } from "@/modules/task/type";
 import { Badge } from "@/components/ui/badge";
 import { formatDateFriendly } from "@/lib/datetime";
 import { Button } from "./ui/button";
-import { DeleteIcon } from "lucide-react";
+// import { DeleteIcon } from "lucide-react";
+import { Trash2, Pencil } from "lucide-react";
 
 export function Tasks({
   tasks,
@@ -21,13 +22,25 @@ export function Tasks({
           <section className="flex items-end justify-between">
             <h3 className="text-lg font-semibold">{task.title}</h3>
 
-            <Button
-              onClick={() => removeTask(task.id)}
-              size="icon-xs"
-              variant="destructive"
-            >
-              <DeleteIcon />
-            </Button>
+            <div className="flex space-x-2">
+              <Button
+                onClick={() => removeTask(task.id)}
+                size="icon-xs"
+                variant="destructive"
+              >
+                <Trash2 />
+                {/* <DeleteIcon /> */}
+              </Button>
+
+              <Button
+                onClick={() => removeTask(task.id)}
+                size="icon-xs"
+                variant="default"
+              >
+                <Pencil />
+                {/* <DeleteIcon /> */}
+              </Button>
+            </div>
           </section>
 
           <section className="flex items-end justify-between">
