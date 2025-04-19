@@ -2,9 +2,8 @@ import type { Tasks } from "@/modules/task/type";
 import { Badge } from "@/components/ui/badge";
 import { formatDateFriendly } from "@/lib/datetime";
 import { Button } from "./ui/button";
-// import { DeleteIcon } from "lucide-react";
-import { Trash2, Pencil, Calendar } from "lucide-react";
-import * as Popover from "@radix-ui/react-popover";
+import { Trash2Icon, PencilIcon } from "lucide-react";
+import { ButtonDatePicker } from "./shared/button-date-picker";
 
 export function Tasks({
   tasks,
@@ -29,17 +28,11 @@ export function Tasks({
                 size="icon-xs"
                 variant="destructive"
               >
-                <Trash2 />
-                {/* <DeleteIcon /> */}
+                <Trash2Icon />
               </Button>
 
-              <Button
-                onClick={() => removeTask(task.id)}
-                size="icon-xs"
-                variant="default"
-              >
-                <Pencil />
-                {/* <DeleteIcon /> */}
+              <Button size="icon-xs" variant="default">
+                <PencilIcon />
               </Button>
             </div>
           </section>
@@ -54,17 +47,8 @@ export function Tasks({
                   {formatDateFriendly(task.datetime)}
                 </time>
               )}
-              <Popover.Root>
-                <Popover.Trigger asChild>
-                  <Button size="icon-xs" variant="default">
-                    <Calendar />
-                  </Button>
-                </Popover.Trigger>
-                <Popover.Content className="border bg-white p-2 shadow">
-                  <div>Popover content</div>
-                  <Popover.Arrow />
-                </Popover.Content>
-              </Popover.Root>
+
+              <ButtonDatePicker />
             </div>
 
             <div className="mt-2 inline-block text-xs font-medium">
