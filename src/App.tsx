@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tasks } from "@/components/tasks";
 import { useState } from "react";
 import { Button } from "./components/ui/button";
+import * as Popover from "@radix-ui/react-popover";
 
 export function App() {
   const [tasks, setTasks] = useState([
@@ -78,6 +79,7 @@ export function App() {
         </div>
 
         <Tasks tasks={tasks} removeTask={removeTask} />
+        <Popover.Root />
       </main>
     </div>
   );

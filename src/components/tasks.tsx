@@ -3,7 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { formatDateFriendly } from "@/lib/datetime";
 import { Button } from "./ui/button";
 // import { DeleteIcon } from "lucide-react";
-import { Trash2, Pencil } from "lucide-react";
+import { Trash2, Pencil, Calendar } from "lucide-react";
+import * as Popover from "@radix-ui/react-popover";
 
 export function Tasks({
   tasks,
@@ -53,6 +54,17 @@ export function Tasks({
                   {formatDateFriendly(task.datetime)}
                 </time>
               )}
+              <Popover.Root>
+                <Popover.Trigger asChild>
+                  <Button size="icon-xs" variant="default">
+                    <Calendar />
+                  </Button>
+                </Popover.Trigger>
+                <Popover.Content className="border bg-white p-2 shadow">
+                  <div>Popover content</div>
+                  <Popover.Arrow />
+                </Popover.Content>
+              </Popover.Root>
             </div>
 
             <div className="mt-2 inline-block text-xs font-medium">
