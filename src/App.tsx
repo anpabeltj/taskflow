@@ -2,9 +2,10 @@ import { AddTaskForm } from "@/components/shared/add-task-form";
 import { Tasks } from "@/components/tasks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
+import type { CreateTaskData, Task } from "@/modules/task/type";
 
 export function App() {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<Task[]>([
     {
       id: "a",
       title: "Go to gym",
@@ -42,6 +43,18 @@ export function App() {
     setTasks(updatedTasks);
   }
 
+  function addTask(createTaskData: CreateTaskData) {
+    const newTask: Task = {
+      id: String(tasks.length + 1),
+      title: createTaskData.title,
+      completed: false,
+      datetime: new Date(),
+    };
+
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <header className="mb-8 flex justify-between border-b pb-4">
@@ -60,7 +73,7 @@ export function App() {
 
       <main className="mx-auto max-w-2xl space-y-10">
         <div>
-          <AddTaskForm />
+          <AddTaskForm addTask={addTask} />
         </div>
 
         <Tasks tasks={tasks} removeTask={removeTask} />

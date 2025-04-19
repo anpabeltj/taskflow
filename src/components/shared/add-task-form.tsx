@@ -1,24 +1,24 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import type { CreateTaskData } from "@/modules/task/type";
 
-export function AddTaskForm() {
+export function AddTaskForm({
+  addTask,
+}: {
+  addTask: (createTaskData: CreateTaskData) => void;
+}) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log("Submit");
-  }
+    const formData = new FormData(event.currentTarget);
 
-  // function addTask() {
-  //   const newTask = {
-  //     id: String(tasks.length + 1),
-  //     title: "New Todo",
-  //     completed: false,
-  //     datetime: new Date(),
-  //   };
-  //   const updatedTasks = [...tasks, newTask];
-  //   setTasks(updatedTasks);
-  // }
+    const newTask = {
+      title: String(formData.get("title")),
+    };
+
+    addTask(newTask);
+  }
 
   return (
     <form method="post" onSubmit={handleSubmit}>
