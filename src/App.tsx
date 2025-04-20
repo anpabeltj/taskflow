@@ -9,6 +9,7 @@ import {
   Tasks,
   TaskSchema,
 } from "@/modules/task/schema";
+import AddTaskHookForm from "@/components/shared/add-task-hook-form";
 
 export function App() {
   const [tasks, setTasks] = useState<Tasks>([
@@ -95,6 +96,10 @@ export function App() {
       </header>
 
       <main className="mx-auto max-w-2xl space-y-10">
+        <div>
+          <AddTaskHookForm />
+        </div>
+
         <div>
           <AddTaskForm addTask={addTask} />
         </div>
