@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Trash2Icon, PencilIcon } from "lucide-react";
 import { ButtonDatePicker } from "./shared/button-date-picker";
 
-export function Tasks({
+export function TasksList({
   tasks,
   removeTask,
 }: {

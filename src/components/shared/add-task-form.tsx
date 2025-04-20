@@ -10,14 +10,12 @@ export function AddTaskForm({
 }) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     const formData = new FormData(event.currentTarget);
-
     const newTask = {
       title: String(formData.get("title")),
     };
-
     addTask(newTask);
+    event.currentTarget.reset();
   }
 
   return (

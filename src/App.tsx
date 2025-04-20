@@ -1,11 +1,17 @@
 import { AddTaskForm } from "@/components/shared/add-task-form";
-import { Tasks } from "@/components/tasks";
+import { TasksList } from "@/components/tasks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
-import type { CreateTaskData, Task } from "@/modules/task/type";
+import {
+  CreateTaskData,
+  CreateTaskDataSchema,
+  Task,
+  Tasks,
+  TaskSchema,
+} from "@/modules/task/schema";
 
 export function App() {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [tasks, setTasks] = useState<Tasks>([
     {
       id: "a",
       title: "Go to gym",
@@ -44,15 +50,32 @@ export function App() {
   }
 
   function addTask(createTaskData: CreateTaskData) {
+    const parsedCreateTaskData = CreateTaskDataSchema.safeParse(createTaskData);
+
+    if (!parsedCreateTaskData.success) {
+      console.error(parsedCreateTaskData.error);
+      // TODO: use Toast or Sonner
+      return;
+    }
+
     const newTask: Task = {
       id: String(tasks.length + 1),
       title: createTaskData.title,
       completed: false,
-      datetime: new Date(),
+      datetime: new Date("2020"),
     };
+
+    const parsedTaskData = TaskSchema.safeParse(newTask);
+
+    if (!parsedTaskData.success) {
+      console.error(parsedTaskData.error);
+      // TODO: use Toast or Sonner
+      return;
+    }
 
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
+    // TODO: use Toast or Sonner
   }
 
   return (
@@ -76,7 +99,7 @@ export function App() {
           <AddTaskForm addTask={addTask} />
         </div>
 
-        <Tasks tasks={tasks} removeTask={removeTask} />
+        <TasksList tasks={tasks} removeTask={removeTask} />
       </main>
     </div>
   );
