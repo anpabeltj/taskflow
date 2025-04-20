@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import { Input } from "../ui/input";
 
 const schema = z.interface({
   firstName: z.string().nonempty({ message: "First name is required" }),
@@ -20,13 +21,13 @@ export default function AddTaskHookForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("firstName")} />
+      <Input {...register("firstName")} />
       {/* <p>{errors.firstName?.message}</p> */}
 
-      <input {...register("age")} />
+      <Input {...register("age")} />
       {/* <p>{errors.age?.message}</p> */}
 
-      <Button type="submit" />
+      <Button type="submit">Submit</Button>
 
       <pre className="text-xs">{JSON.stringify(errors, null, 2)}</pre>
     </form>
