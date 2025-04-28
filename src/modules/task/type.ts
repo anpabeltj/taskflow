@@ -7,8 +7,9 @@ export type Task = {
 
 export type Tasks = Task[];
 
-// export type CreateTask = {
-//   title: string;
-// }
+export type CreateTask = {
+  title: string;
+  completed: boolean;
+};
 
 export type CreateTaskData = Pick<Task, "title">;
