@@ -1,18 +1,11 @@
 import { AddTaskForm } from "@/components/shared/add-task-form";
-import { TasksList } from "@/components/tasks";
+import { Tasks } from "@/components/tasks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
-import {
-  CreateTaskData,
-  CreateTaskDataSchema,
-  Task,
-  Tasks,
-  TaskSchema,
-} from "@/modules/task/schema";
-import AddTaskHookForm from "@/components/shared/add-task-hook-form";
+import type { CreateTaskData, Task } from "@/modules/task/type";
 
 export function App() {
-  const [tasks, setTasks] = useState<Tasks>([
+  const [tasks, setTasks] = useState<Task[]>([
     {
       id: "a",
       title: "Go to gym",
@@ -51,32 +44,15 @@ export function App() {
   }
 
   function addTask(createTaskData: CreateTaskData) {
-    const parsedCreateTaskData = CreateTaskDataSchema.safeParse(createTaskData);
-
-    if (!parsedCreateTaskData.success) {
-      console.error(parsedCreateTaskData.error);
-      // TODO: use Toast or Sonner
-      return;
-    }
-
     const newTask: Task = {
       id: String(tasks.length + 1),
       title: createTaskData.title,
       completed: false,
-      datetime: new Date("2020"),
+      datetime: new Date(),
     };
-
-    const parsedTaskData = TaskSchema.safeParse(newTask);
-
-    if (!parsedTaskData.success) {
-      console.error(parsedTaskData.error);
-      // TODO: use Toast or Sonner
-      return;
-    }
 
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
-    // TODO: use Toast or Sonner
   }
 
   return (
@@ -97,14 +73,10 @@ export function App() {
 
       <main className="mx-auto max-w-2xl space-y-10">
         <div>
-          <AddTaskHookForm />
-        </div>
-
-        <div>
           <AddTaskForm addTask={addTask} />
         </div>
 
-        <TasksList tasks={tasks} removeTask={removeTask} />
+        <Tasks tasks={tasks} removeTask={removeTask} />
       </main>
     </div>
   );
