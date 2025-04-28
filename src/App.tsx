@@ -1,10 +1,7 @@
 import { AddTaskForm } from "@/components/shared/add-task-form";
-import { Tasks } from "@/components/tasks";
+import { TasksList } from "@/components/tasks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
-<<<<<<< HEAD
-import type { CreateTaskData, Task } from "@/modules/task/type";
-=======
 import {
   CreateTaskData,
   CreateTaskDataSchema,
@@ -14,10 +11,9 @@ import {
 } from "@/modules/task/schema";
 import AddTaskHookForm from "@/components/shared/add-task-hook-form";
 import { toast } from "sonner";
->>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
 
 export function App() {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [tasks, setTasks] = useState<Tasks>([
     {
       id: "a",
       title: "Go to gym",
@@ -55,9 +51,6 @@ export function App() {
     setTasks(updatedTasks);
   }
 
-<<<<<<< HEAD
-  function addTask(createTaskData: CreateTaskData) {
-=======
   function addTask(createTaskData: CreateTaskData & { datetime: string }) {
     const parsedCreateTaskData = CreateTaskDataSchema.safeParse(createTaskData);
 
@@ -68,18 +61,10 @@ export function App() {
       return;
     }
 
->>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
     const newTask: Task = {
       id: String(tasks.length + 1),
       title: createTaskData.title,
       completed: false,
-<<<<<<< HEAD
-      datetime: new Date(),
-    };
-
-    const updatedTasks = [...tasks, newTask];
-    setTasks(updatedTasks);
-=======
       datetime: new Date(createTaskData.datetime),
     };
 
@@ -97,7 +82,6 @@ export function App() {
     // TODO: use Toast or Sonner
     toast.success("Task added successfully");
     return;
->>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
   }
 
   return (
@@ -118,10 +102,14 @@ export function App() {
 
       <main className="mx-auto max-w-2xl space-y-10">
         <div>
+          <AddTaskHookForm />
+        </div>
+
+        <div>
           <AddTaskForm addTask={addTask} />
         </div>
 
-        <Tasks tasks={tasks} removeTask={removeTask} />
+        <TasksList tasks={tasks} removeTask={removeTask} />
       </main>
     </div>
   );
