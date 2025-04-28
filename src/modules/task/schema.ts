@@ -1,19 +1,19 @@
 import * as z from "zod";
 
-export const TaskSchema = z.interface({
+export const TaskSchema = z.object({
   id: z.string(),
   title: z
     .string()
-    .min(3, { error: "Minimum of 3 characters" })
-    .max(100, { error: "Maximum of 100 characters" }),
+    .min(3, { message: "Minimum of 3 characters" })
+    .max(100, { message: "Maximum of 100 characters" }),
   completed: z.boolean(),
   datetime: z
     .date()
     .min(new Date("2025-01-01"), {
-      error: "Too late, earliest should be 1 January 2025",
+      message: "Too late, earliest should be 1 January 2025",
     })
     .max(new Date("2026-01-01"), {
-      error: "Too far, latest should be 1 January 2026",
+      message: "Too far, latest should be 1 January 2026",
     })
     .optional(),
 });

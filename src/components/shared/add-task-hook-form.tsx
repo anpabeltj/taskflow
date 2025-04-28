@@ -4,7 +4,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
 
-const schema = z.interface({
+const schema = z.object({
   firstName: z.string().nonempty({ message: "First name is required" }),
   age: z.number().positive().int({ message: "Age must be a positive integer" }),
 });

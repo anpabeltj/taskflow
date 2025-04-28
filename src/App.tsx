@@ -2,7 +2,19 @@ import { AddTaskForm } from "@/components/shared/add-task-form";
 import { Tasks } from "@/components/tasks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
+<<<<<<< HEAD
 import type { CreateTaskData, Task } from "@/modules/task/type";
+=======
+import {
+  CreateTaskData,
+  CreateTaskDataSchema,
+  Task,
+  Tasks,
+  TaskSchema,
+} from "@/modules/task/schema";
+import AddTaskHookForm from "@/components/shared/add-task-hook-form";
+import { toast } from "sonner";
+>>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
 
 export function App() {
   const [tasks, setTasks] = useState<Task[]>([
@@ -43,16 +55,49 @@ export function App() {
     setTasks(updatedTasks);
   }
 
+<<<<<<< HEAD
   function addTask(createTaskData: CreateTaskData) {
+=======
+  function addTask(createTaskData: CreateTaskData & { datetime: string }) {
+    const parsedCreateTaskData = CreateTaskDataSchema.safeParse(createTaskData);
+
+    if (!parsedCreateTaskData.success) {
+      console.error(parsedCreateTaskData.error);
+      // TODO: use Toast or Sonner
+      toast.error("Invalid task data");
+      return;
+    }
+
+>>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
     const newTask: Task = {
       id: String(tasks.length + 1),
       title: createTaskData.title,
       completed: false,
+<<<<<<< HEAD
       datetime: new Date(),
     };
 
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
+=======
+      datetime: new Date(createTaskData.datetime),
+    };
+
+    const parsedTaskData = TaskSchema.safeParse(newTask);
+
+    if (!parsedTaskData.success) {
+      console.error(parsedTaskData.error);
+      // TODO: use Toast or Sonner
+      toast.error("Invalid task data");
+      return;
+    }
+
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+    // TODO: use Toast or Sonner
+    toast.success("Task added successfully");
+    return;
+>>>>>>> c5953ea (feat: add date picker and toast notifications; update task schema and dependencies)
   }
 
   return (
